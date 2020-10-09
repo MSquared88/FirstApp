@@ -1,64 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import axios from 'axios';
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+//components
+import Home from './screens/Home';
+import ColorPalette from './screens/ColorPalette';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text style={styles.heading}>
-          Here are some boxes of diffrent colors
-        </Text>
-      </View>
-      <View>
-        <Text style={[styles.text, styles.cyan]}>Cyan #2aa198</Text>
-      </View>
-      <View>
-        <Text style={[styles.text, styles.blue]}>blue #268bd2</Text>
-      </View>
-      <View>
-        <Text style={[styles.text, styles.magenta]}>magenta #d33682</Text>
-      </View>
-      <View>
-        <Text style={[styles.text, styles.orange]}>orange #cb4b16</Text>
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Color Palette" component={ColorPalette} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  heading: {
-    textAlign: 'left',
-    width: 350,
-    fontSize: 15,
-    fontWeight: 'bold',
-  },
-  text: {
-    color: 'white',
-    textAlign: 'center',
-    backgroundColor: 'gray',
-    borderColor: 'green',
-    paddingVertical: 5,
-    width: 350,
-    marginBottom: 10,
-  },
-  cyan: {
-    backgroundColor: '#2aa198',
-  },
-  blue: {
-    backgroundColor: '#268bd2',
-  },
-  magenta: {
-    backgroundColor: '#d33682',
-  },
-  orange: {
-    backgroundColor: '#cb4b16',
-  },
-});
