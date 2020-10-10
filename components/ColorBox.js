@@ -5,9 +5,15 @@ const ColorBox = ({ colorName, colorHex }) => {
   const colorStyle = {
     backgroundColor: colorHex,
   };
+  const textStyle = {
+    color:
+      parseInt(colorHex.replace('#', ''), 16) > 0xffffff / 1.1
+        ? 'black'
+        : 'white',
+  };
   return (
     <View style={[styles.box, colorStyle]}>
-      <Text style={styles.text}>
+      <Text style={[styles.text, textStyle]}>
         {colorName + ' '}
         {colorHex}
       </Text>
@@ -26,10 +32,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   text: {
-    justifyContent: 'center',
-    alignItems: 'center',
     color: 'white',
     fontWeight: 'bold',
-    marginBottom: 10,
   },
 });
